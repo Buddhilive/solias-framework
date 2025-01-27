@@ -1,5 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-nx-welcome',
@@ -863,4 +864,10 @@ nx g &#64;nx/angular:component ui/src/lib/button</pre>
   styles: [],
   encapsulation: ViewEncapsulation.None,
 })
-export class NxWelcomeComponent {}
+export class NxWelcomeComponent implements OnInit {
+  httpClient = inject(HttpClient);
+
+  ngOnInit(): void {
+    this.httpClient.get('/api').subscribe((res) => console.log(res));
+  }
+}
