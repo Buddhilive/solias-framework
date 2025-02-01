@@ -9,6 +9,7 @@ import { SoliasComponentsComponent } from '@solias-framework/solias-components'
   imports: [CommonModule, SoliasComponentsComponent],
   template: `
     <solias-solias-components />
+    <span class="material-icons">phone_android</span>
   `,
   styles: [],
   encapsulation: ViewEncapsulation.None,
