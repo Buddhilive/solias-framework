@@ -8,4 +8,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',
 })
-export class NavigationComponent {}
+export class NavigationComponent {
+  toggleShow(element: HTMLUListElement) {
+    element.classList.toggle('show')
+  }
+}
