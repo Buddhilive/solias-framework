@@ -1,27 +1,17 @@
-<nav class="solias-nav">
-  <ul class="solias-nav__ul">
-    <li class="solias-nav__li">
-      <a href="" class="solias-nav__link">
-        <span class="material-icons">home</span>
-        <span class="solias-nav__label">Home</span>
-      </a>
-    </li>
-    <li class="solias-nav__li">
-      <button class="solias-nav__li-btn" (click)="toggleShow(subMenu)">
-        <span class="solias-nav__btn-label">
-          <span class="material-icons">dashboard</span>
-          <span class="solias-nav__label">Dashboards</span>
-        </span>
-        <span class="material-icons">arrow_drop_down</span>
-      </button>
-      <ul class="solias-nav__ul solias-nav__ul--submenu" #subMenu>
-        <li class="solias-nav__li solias-nav__li--submenu">
-          <a href="" class="solias-nav__link">
-            <span class="material-icons">apps</span>
-            <span class="solias-nav__label">Apps</span>
-          </a>
-        </li>
-      </ul>
-    </li>
+<div class="solias-nav" [class.solias-nav--collapsed]="isCollapsed">
+  <button class="solias-nav__btn" (click)="toggleSidebar()">
+    <span class="material-icons">menu</span>
+  </button>
+  <ul class="solias-nav__list">
+    @for (item of menuItems; track $index) {
+      <li class="solias-nav__item">
+        <a class="solias-nav__link" [routerLink]="[item.link]">
+          <span class="material-icons">{{ item.icon }}</span>
+          @if (!isCollapsed) {
+            <span class="solias-nav__title" [@toggle]="!isCollapsed">{{ item.name }}</span>
+          }
+        </a>
+      </li>
+    }
   </ul>
-</nav>
+</div>
