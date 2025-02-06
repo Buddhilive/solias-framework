@@ -68,7 +68,7 @@
   padding: 1rem 0.5rem;
   margin: 0;
   background-color: var(--solias-color-surface);
-  font-size: var(--solias-default-font-size);
+  /* font-size: var(--solias-default-font-size); */
   border-right: 0.0625rem solid var(--solias-color-outline);
   transition: 0.5s ease-in-out all;
   &--collapsed {
