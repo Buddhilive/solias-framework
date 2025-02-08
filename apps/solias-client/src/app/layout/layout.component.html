@@ -2,7 +2,9 @@
   <solias-navigation [menuItems]="navigations"></solias-navigation>
   <main class="solias-main">
     <solias-top-bar></solias-top-bar>
-    <router-outlet></router-outlet>
+    <div class="solias-main__content">
+      <router-outlet></router-outlet>
+    </div>
     <solias-footer></solias-footer>
   </main>
 </div>
