@@ -1,16 +1,16 @@
 import { Route } from '@angular/router';
-import { SoliasComponentsComponent } from '@solias-framework/solias-components';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ComponentsComponent } from './pages/components/components.component';
 
 export const appRoutes: Route[] = [
     {
         path: '',
-        component: SoliasComponentsComponent,
+        component: ComponentsComponent,
         pathMatch: 'full'
     },
     {
         path: 'components',
-        component: SoliasComponentsComponent,
+        component: ComponentsComponent,
         pathMatch: 'full'
     },
     {
