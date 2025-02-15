@@ -5,6 +5,18 @@ label {
 }
 
 input {
+  @extend %default-input-styles;
+}
+
+select {
+  @extend %default-input-styles;
+}
+
+textarea {
+  @extend %default-input-styles;
+}
+
+%default-input-styles {
   display: block;
   font-size: var(--solias-default-font-size);
   padding: 0.5rem;
@@ -14,7 +26,9 @@ input {
   background-color: var(--solias-color-background);
   color: var(--solias-color-on-background);
   width: 100%;
-  &:focus, &:active, &:focus-visible {
+  &:focus,
+  &:active,
+  &:focus-visible {
     border-color: var(--solias-color-primary);
   }
 }
