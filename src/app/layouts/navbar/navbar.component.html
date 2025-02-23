@@ -1,0 +1,32 @@
+<div class="solias-navbar">
+  <a class="solias-navbar__logo" [routerLink]="['/']">
+    <img
+      src="logos/logo.png"
+      alt="solias Logo"
+      srcset=""
+    />
+    <span>solias</span>
+  </a>
+  <span class="solias-navbar__spacer"></span>
+  @if (userInfo) {
+    <div class="solias-navbar__user">
+      <img
+        [src]="userInfo.photoURL"
+        alt="Profile Picture"
+        class="profile-picture"
+      />
+      <span class="user-name">{{ userInfo.displayName }}</span>
+    </div>
+  }
+  <div class="solias-navbar__actions">
+    @if (userInfo) {
+      <button class="solias-navbar__btn" (click)="logout()" title="Logout">
+        <span class="material-icons"> logout </span>
+      </button>
+    } @else {
+      <button class="solias-navbar__btn" (click)="login()" title="Login">
+        <span class="material-icons"> login </span>
+      </button>
+    }
+  </div>
+</div>

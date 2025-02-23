@@ -1,0 +1,17 @@
+<div class="solias-sidebar" [class.solias-sidebar--collapsed]="isCollapsed">
+  <button class="solias-sidebar__btn" (click)="toggleSidebar()">
+    <span class="material-icons">menu</span>
+  </button>
+  <ul class="solias-sidebar__list">
+    @for (item of menuItems; track $index) {
+      <li class="solias-sidebar__item">
+        <a class="solias-sidebar__link" [routerLink]="[item.link]">
+          <span class="material-icons">{{ item.icon }}</span>
+          @if (!isCollapsed) {
+            <span class="solias-sidebar__title" [@toggle]="!isCollapsed">{{ item.name }}</span>
+          }
+        </a>
+      </li>
+    }
+  </ul>
+</div>

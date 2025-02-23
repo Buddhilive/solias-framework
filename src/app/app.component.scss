@@ -1,0 +1,13 @@
+.solias {
+  display: flex;
+  min-height: 100vh;
+  &__body {
+    flex-grow: 1;
+  }
+
+  &__main {
+    height: calc(100vh - 3.5rem);
+    overflow-x: auto;
+    padding: 1rem;
+  }
+}
