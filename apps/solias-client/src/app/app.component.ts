@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { LayoutComponent } from './layout/layout.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [LayoutComponent],
+  imports: [RouterModule],
   selector: 'solias-root',
-  template: `<solias-layout />`,
+  template: `<router-outlet />`,
   styles: [],
 })
 export class AppComponent {}
