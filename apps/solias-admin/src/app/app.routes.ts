@@ -1,13 +1,14 @@
 import { Route } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 export const appRoutes: Route[] = [
     {
         path: '',
-        component: NxWelcomeComponent
+        component: DashboardComponent
     },
     {
         path: '**',
-        component: NxWelcomeComponent
+        component: NotfoundComponent
     }
 ];
