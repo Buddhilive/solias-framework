@@ -1,8 +1,8 @@
 export default {
-  displayName: 'solias-components',
+  displayName: 'solias-admin',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/solias-components',
+  coverageDirectory: '../../coverage/apps/solias-admin',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
