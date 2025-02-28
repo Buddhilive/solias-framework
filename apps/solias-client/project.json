@@ -23,7 +23,12 @@
           }
         ],
         "styles": ["apps/solias-client/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "server": "apps/solias-client/src/main.server.ts",
+        "prerender": true,
+        "ssr": {
+          "entry": "apps/solias-client/server.ts"
+        }
       },
       "configurations": {
         "production": {
