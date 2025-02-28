@@ -1,0 +1,31 @@
+<div class="solias-topbar">
+  <a class="solias-topbar__logo" [routerLink]="['/']">
+    <img
+      src="logos/logo.png"
+      alt="Solias Logo"
+    />
+    <span>Solias</span>
+  </a>
+  <span class="solias-topbar__spacer"></span>
+  @if (isLoggedIn) {
+  <div class="solias-topbar__user">
+    <img
+      src="images/no-profile-photo.png"
+      alt="Profile Picture"
+      class="profile-picture"
+    />
+    <span class="user-name">User</span>
+  </div>
+  }
+  <div class="solias-topbar__actions">
+    @if (isLoggedIn) {
+    <button class="solias-topbar__btn" (click)="logout()" title="Logout">
+      <span class="material-icons"> logout </span>
+    </button>
+    } @else {
+    <button class="solias-topbar__btn" (click)="login()" title="Login">
+      <span class="material-icons"> login </span>
+    </button>
+    }
+  </div>
+</div>

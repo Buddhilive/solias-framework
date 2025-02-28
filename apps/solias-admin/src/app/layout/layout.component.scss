@@ -1,0 +1,11 @@
+.solias-layout {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.solias-main {
+  &__content {
+    padding: 1rem;
+  }
+}

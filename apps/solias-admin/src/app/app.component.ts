@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { LayoutComponent } from "./layout/layout.component";
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [RouterModule, LayoutComponent],
   selector: 'solias-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  template: `<solias-layout />`,
+  styles: [],
 })
 export class AppComponent {
   title = 'solias-admin';
