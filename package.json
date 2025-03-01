@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "STAGE=dev nx run-many --target=serve --all=true",
+    "start": "nx run-many --target=serve --all=true",
     "start:client": "nx run solias-client:serve",
-    "start:api": "STAGE=dev nx run solias-api:serve",
+    "start:api": "nx run solias-api:serve",
     "start:admin": "nx run solias-admin:serve"
   },
   "private": true,
