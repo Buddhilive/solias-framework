@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nx run-many --target=serve --all=true",
     "start:client": "nx run solias-client:serve",
-    "start:api": "nx run solias-api:serve",
+    "start:api": "nx run solias-api:serve --configuration=development",
     "start:admin": "nx run solias-admin:serve"
   },
   "private": true,
