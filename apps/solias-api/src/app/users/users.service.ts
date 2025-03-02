@@ -9,7 +9,6 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersRepository } from './entities/users.repository';
 import { ApiResponse } from '../utils/api-response.dto';
-import { from, Observable } from 'rxjs';
 import { User } from './entities/user.entity';
 import { UserProfile } from './entities/profile.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -51,26 +50,26 @@ export class UsersService {
     }
   }
 
-  findAll(): Observable<User[]> {
-    return from(this.userRepo.find());
+  findAll(): Promise<User[]> {
+    return this.userRepo.find();
   }
 
-  findOne(id: string): Observable<User> {
-    return from(this.userRepo.findOne({ where: { id } }));
+  findOne(id: string): Promise<User> {
+    return this.userRepo.findOne({ where: { id } });
   }
 
   async update(
     id: string,
     updateUserDto: UpdateUserDto
-  ): Promise<Observable<UpdateResult>> {
+  ): Promise<UpdateResult> {
     const user = await this.userRepo.findOne({ where: { id } });
     if (!user) {
       throw new NotFoundException('User not found');
     }
-    return from(this.userProfileRepository.update({ user }, updateUserDto));
+    return this.userProfileRepository.update({ user }, updateUserDto);
   }
 
-  async remove(id: string) {
+  async remove(id: string): Promise<User> {
     const userProfile = await this.userProfileRepository.findOne({
       where: { user: { id: id } },
     });
