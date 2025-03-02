@@ -3,21 +3,27 @@ import { UsersRepository } from '../users/entities/users.repository';
 import { CredentialsDto } from './dto/credentials.dto';
 import { ApiResponse } from '../utils/api-response.dto';
 import { compare } from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userRepo: UsersRepository) {}
+  constructor(
+    private readonly userRepo: UsersRepository,
+    private jwtService: JwtService
+  ) {}
   async validateUser(
     credentials: CredentialsDto
-  ): Promise<ApiResponse<unknown>> {
+  ): Promise<ApiResponse<{ accessToken: string }>> {
     const { username, password } = credentials;
 
     const user = await this.userRepo.findOne({ where: { username } });
 
     if (user && (await compare(password, user.password))) {
+      const jwtAccessToken = this.jwtService.sign({ username });
       return {
         statusCode: 200,
         message: 'Login successful',
+        data: { accessToken: jwtAccessToken },
       };
     } else {
       throw new UnauthorizedException('Username or Password is incorrect.');
