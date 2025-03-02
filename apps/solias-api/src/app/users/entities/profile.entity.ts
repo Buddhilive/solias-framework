@@ -21,13 +21,7 @@ export class UserProfile {
   @Column({ nullable: true })
   dateOfBirth?: Date;
 
-  @Column({ nullable: true })
-  address?: string;
-
-  @Column({ nullable: true })
-  phone?: string;
-
-  @OneToOne(() => User, { cascade: true })
+  @OneToOne(() => User, (user) => user.profile)
   @JoinColumn()
   user: User;
 }

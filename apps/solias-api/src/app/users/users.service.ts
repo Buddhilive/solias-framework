@@ -1,4 +1,10 @@
-import { BadRequestException, ConflictException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersRepository } from './entities/users.repository';
@@ -7,8 +13,7 @@ import { from, Observable } from 'rxjs';
 import { User } from './entities/user.entity';
 import { UserProfile } from './entities/profile.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { response } from 'express';
+import { Repository, UpdateResult } from 'typeorm';
 
 @Injectable()
 export class UsersService {
@@ -19,7 +24,7 @@ export class UsersService {
   ) {}
   async create(createUserDto: CreateUserDto): Promise<ApiResponse<unknown>> {
     const newUser = await this.userRepo.createUser(createUserDto);
-    
+
     try {
       await this.userRepo.save(newUser);
       if (newUser) {
@@ -50,15 +55,35 @@ export class UsersService {
     return from(this.userRepo.find());
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(id: string): Observable<User> {
+    return from(this.userRepo.findOne({ where: { id } }));
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(
+    id: string,
+    updateUserDto: UpdateUserDto
+  ): Promise<Observable<UpdateResult>> {
+    const user = await this.userRepo.findOne({ where: { id } });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return from(this.userProfileRepository.update({ user }, updateUserDto));
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: string) {
+    const userProfile = await this.userProfileRepository.findOne({
+      where: { user: { id: id } },
+    });
+
+    if (userProfile) {
+      await this.userProfileRepository.remove(userProfile);
+    }
+
+    const user = await this.userRepo.findOne({ where: { id } });
+    if (user) {
+      return await this.userRepo.remove(user);
+    } else {
+      throw new NotFoundException('User not found');
+    }
   }
 }

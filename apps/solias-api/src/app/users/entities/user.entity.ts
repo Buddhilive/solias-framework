@@ -28,6 +28,6 @@ export class User {
   @UpdateDateColumn()
   updatedDate: Date;
 
-  @OneToOne(() => UserProfile, (profile) => profile.user)
+  @OneToOne(() => UserProfile, (profile) => profile.user, { cascade: true })
   profile: UserProfile;
 }
