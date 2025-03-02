@@ -3,6 +3,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersRepository } from './entities/users.repository';
 import { ApiResponse } from '../utils/api-response.dto';
+import { from, Observable } from 'rxjs';
+import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
@@ -11,8 +13,8 @@ export class UsersService {
     return await this.userRepo.createUser(createUserDto);
   }
 
-  findAll() {
-    return `This action returns all users`;
+  findAll(): Observable<User[]> {
+    return from(this.userRepo.find());
   }
 
   findOne(id: number) {

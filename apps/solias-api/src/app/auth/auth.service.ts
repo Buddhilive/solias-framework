@@ -13,7 +13,7 @@ export class AuthService {
   ) {}
   async validateUser(
     credentials: CredentialsDto
-  ): Promise<ApiResponse<{ accessToken: string }>> {
+  ): Promise<ApiResponse<{ accessToken: string; user: string }>> {
     const { username, password } = credentials;
 
     const user = await this.userRepo.findOne({ where: { username } });
@@ -23,7 +23,7 @@ export class AuthService {
       return {
         statusCode: 200,
         message: 'Login successful',
-        data: { accessToken: jwtAccessToken },
+        data: { user: user.username, accessToken: jwtAccessToken },
       };
     } else {
       throw new UnauthorizedException('Username or Password is incorrect.');
