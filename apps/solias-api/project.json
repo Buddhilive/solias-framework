@@ -5,6 +5,20 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "options": {
+        "webpackConfig": "apps/solias-api/webpack.config.js",
+        "main": "apps/solias-api/src/main.ts",
+        "tsConfig": "apps/solias-api/tsconfig.app.json",
+        "optimization": false,
+        "outputHashing": "none",
+        "sourceMap": true,
+        "outputPath": "dist/apps/solias-api/",
+        "compiler": "tsc",
+        "target": "node"
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
