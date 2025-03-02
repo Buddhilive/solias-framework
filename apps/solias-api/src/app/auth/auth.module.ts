@@ -9,10 +9,11 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { UserProfile } from '../users/entities/profile.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, UserProfile]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
