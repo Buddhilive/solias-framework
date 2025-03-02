@@ -5,7 +5,7 @@ import {
   BadRequestException,
   ConflictException,
   Injectable,
-  InternalServerErrorException,
+  InternalServerErrorException
 } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { ApiResponse } from '../../utils/api-response.dto';
